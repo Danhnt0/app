@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Edit </title>
+
+    <%- include ('../layouts/head') %>
+
+    <script src="https://cdn.tiny.cloud/1/5kd6ip43lef9qw9gl1xuaslg62wqag3vtrrxgw2g9a531epw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+
+      
+    <script>
+        tinymce.init({
+          selector: '#mytextarea'
+        });
+      </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="../../">Blog</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Posts</a></li>
+                <li><a href="#">User</a></li>
+              </ul>
+            </div>
+          </nav>
+
+            <div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1>Posts</h1>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form role="form" method="post" action="<%= data.post.id%>">
+                                        <div id ="signupalert" style = " <% if (!data || !data.error) { %> display:none <% } %> " class = "alert alert-danger">
+                                            <p>Error:</p>
+                                            <span><% if (data && data.error) { %> <%= data.error %> <% } %></span>
+                                        </div>  
+                                        <div id ="signupsuccess" style = " <% if (!data || !data.success) { %> display:none <% } %> " class = "alert alert-success">
+                                            <p>Success:</p>
+                                            <span><% if (data && data.success) { %> <%= data.success %> <% } %></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="title">Title</label>
+                                            <input type="text" class="form-control" name="title" value="<%= data.post.title %>"
+                                                placeholder="Enter title" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="content">Content</label>
+                                            <textarea class="form-control" name="content"  id="mytextarea" style="height: 600px;"
+                                                placeholder="Enter content" ><%= data.post.content %></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="author">Author</label>
+                                            <input type="text" class="form-control" name="author" value="<%= data.post.author %>"
+                                                placeholder="Enter author">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Update </button>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+
+</body>
+
+</html>
